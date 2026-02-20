@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Acerca de ClínicaSalud{% endblock %}
+
+{% block content %}
+<section class="detail-page">
+  <div class="detail-card wide">
+
+    <div class="detail-icon-wrap">
+      <span class="detail-icon">🏥</span>
+    </div>
+
+    <h1>Acerca de <em>ClínicaSalud</em></h1>
+    <p class="detail-sub">
+      Somos un sistema digital de gestión de citas médicas diseñado para
+      conectar pacientes con especialistas de manera rápida, eficiente y confiable.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Misión</span>
+        <span class="info-val">Facilitar el acceso a servicios médicos de calidad mediante tecnología.</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Visión</span>
+        <span class="info-val">Ser la plataforma de salud digital líder en Latinoamérica.</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Tecnología</span>
+        <span class="info-val">Python · Flask · HTML/CSS · Bootstrap · Render</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Año de fundación</span>
+        <span class="info-val">2025</span>
+      </div>
+    </div>
+
+    <div class="about-box">
+      <h3>¿Cómo funciona?</h3>
+      <ol class="about-steps">
+        <li><strong>1. Elige tu especialidad</strong> – Navega entre nuestras 12+ especialidades médicas.</li>
+        <li><strong>2. Agrega tu nombre</strong> – Ingresa tus datos para iniciar el proceso de cita.</li>
+        <li><strong>3. Confirmación</strong> – Recibe la confirmación de tu cita con todos los detalles.</li>
+        <li><strong>4. Atención</strong> – Asiste a tu cita y recibe atención de primer nivel.</li>
+      </ol>
+    </div>
+
+    <div class="detail-actions">
+      <a href="/" class="btn-primary">Ir al Inicio</a>
+      <a href="/cita/paciente" class="btn-ghost">Agendar una Cita</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

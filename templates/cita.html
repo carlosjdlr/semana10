@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Cita de {{ paciente }} – ClínicaSalud{% endblock %}
+
+{% block content %}
+<section class="detail-page">
+  <div class="detail-card">
+
+    <div class="detail-icon-wrap">
+      <span class="detail-icon">🗓️</span>
+    </div>
+
+    <div class="status-badge">Cita en proceso</div>
+
+    <h1>Hola, <em>{{ paciente }}</em>.</h1>
+    <p class="detail-sub">Tu cita médica está siendo procesada en el sistema de <strong>ClínicaSalud</strong>.</p>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Paciente</span>
+        <span class="info-val">{{ paciente }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Estado</span>
+        <span class="info-val highlight">✅ En proceso</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Centro</span>
+        <span class="info-val">ClínicaSalud Central</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Próximo paso</span>
+        <span class="info-val">Confirmación vía correo</span>
+      </div>
+    </div>
+
+    <p class="detail-message">
+      "{{ paciente }}, tu cita está registrada. Recibirás una confirmación
+      con el horario y el nombre del especialista asignado."
+    </p>
+
+    <div class="detail-actions">
+      <a href="/" class="btn-primary">Volver al Inicio</a>
+      <a href="#especialidades" class="btn-ghost" onclick="history.back()">← Atrás</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

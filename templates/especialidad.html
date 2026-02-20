@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ datos.titulo }} – ClínicaSalud{% endblock %}
+
+{% block content %}
+<section class="detail-page">
+  <div class="detail-card">
+
+    <div class="detail-icon-wrap">
+      <span class="detail-icon">{{ datos.icono }}</span>
+    </div>
+
+    <div class="status-badge status-esp">Especialidad Disponible</div>
+
+    <h1><em>{{ datos.titulo }}</em></h1>
+    <p class="detail-sub">{{ datos.descripcion }}</p>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Especialidad</span>
+        <span class="info-val">{{ datos.titulo }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Estado</span>
+        <span class="info-val highlight">✅ Disponible</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Horario de Atención</span>
+        <span class="info-val">{{ datos.horario }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Centro</span>
+        <span class="info-val">ClínicaSalud – Sede Central</span>
+      </div>
+    </div>
+
+    <div class="detail-actions">
+      <a href="/cita/paciente" class="btn-primary">Agendar Cita en {{ datos.titulo }}</a>
+      <a href="/" class="btn-ghost">← Volver al Inicio</a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

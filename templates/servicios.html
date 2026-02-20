@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% block title %}Servicios Adicionales – ClínicaSalud{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">Servicios</span>
+    <h2>Servicios Adicionales</h2>
+    <p>Más allá de nuestras especialidades médicas, te ofrecemos servicios complementarios de primera calidad.</p>
+  </div>
+
+  <div class="services-grid">
+    {% for servicio in servicios %}
+    <div class="service-card" style="--delay: {{ loop.index0 * 0.1 }}s">
+      <div class="service-icon">{{ servicio.icono }}</div>
+      <h3 class="service-title">{{ servicio.titulo }}</h3>
+      <p class="service-desc">{{ servicio.descripcion }}</p>
+      
+      <div class="service-includes">
+        <strong>Incluye:</strong>
+        <ul>
+          {% for item in servicio.incluye %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <a href="/contacto" class="service-link">Más información →</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- CTA Section -->
+  <div class="services-cta">
+    <h3>¿Necesitas más información sobre nuestros servicios?</h3>
+    <p>Nuestro equipo está listo para atenderte y resolver todas tus dudas.</p>
+    <div class="cta-buttons">
+      <a href="/contacto" class="btn-primary">Contáctanos</a>
+      <a href="/cita/paciente" class="btn-ghost">Agendar Cita</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Estilos para servicios */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--teal-mid);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: fadeUp 0.6s ease both;
+  animation-delay: var(--delay, 0s);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--teal);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--teal-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 1.25rem;
+  border: 2px solid var(--teal-mid);
+}
+
+.service-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+}
+
+.service-desc {
+  color: var(--mid);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.service-includes {
+  background: var(--cream);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.service-includes strong {
+  display: block;
+  color: var(--teal-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.service-includes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.service-includes li {
+  color: var(--mid);
+  font-size: 0.88rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.service-includes li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: bold;
+}
+
+.service-link {
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color var(--transition);
+  text-decoration: none;
+}
+
+.service-link:hover {
+  color: var(--teal-dark);
+  text-decoration: underline;
+}
+
+.services-cta {
+  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+  border-radius: var(--radius);
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.services-cta h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.services-cta p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.services-cta .btn-primary {
+  background: var(--white);
+  color: var(--teal-dark);
+}
+
+.services-cta .btn-primary:hover {
+  background: var(--cream);
+}
+
+.services-cta .btn-ghost {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.services-cta .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}

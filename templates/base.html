@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}ClínicaSalud{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="/" class="brand">
+      <span class="brand-cross">✚</span>
+      <span>ClínicaSalud</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/especialidad/cardiologia">Especialidades</a></li>
+      <li><a href="/medicos">Médicos</a></li>
+      <li><a href="/horarios">Horarios</a></li>
+      <li><a href="/servicios">Servicios</a></li>
+      <li><a href="/contacto">Contacto</a></li>
+      <li><a href="/acerca">Acerca</a></li>
+      <li><a href="/cita/tu-nombre" class="btn-cita">Agendar Cita</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-cross">✚</span>
+        <strong>ClínicaSalud</strong>
+      </div>
+      <p>© 2025 ClínicaSalud · Sistema de Citas Médicas</p>
+      <p class="footer-note">Construido con Flask &amp; Python</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}ClínicaSalud – Sistema de Citas Médicas{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Sistema de Citas Médicas</div>
+  <h1 class="hero-title">
+    Tu salud,<br>
+    <em>nuestra prioridad.</em>
+  </h1>
+  <p class="hero-sub">
+    Bienvenido a <strong>ClínicaSalud</strong> – Agenda, gestiona y confirma tus
+    citas médicas en minutos, con los mejores especialistas de la ciudad.
+  </p>
+  <div class="hero-cta">
+    <a href="/cita/paciente" class="btn-primary">Agendar Cita</a>
+    <a href="#especialidades" class="btn-ghost">Ver Especialidades</a>
+  </div>
+
+  <!-- Tarjetas de estadísticas -->
+  <div class="stats-row">
+    <div class="stat">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">Especialidades</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Especialistas</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Urgencias</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">10k+</span>
+      <span class="stat-label">Pacientes</span>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="section" id="especialidades">
+  <div class="section-header">
+    <span class="section-tag">Nuestros Servicios</span>
+    <h2>Especialidades Médicas</h2>
+    <p>Contamos con profesionales altamente calificados en diversas áreas de la salud.</p>
+  </div>
+
+  <div class="cards-grid">
+    {% for esp in especialidades %}
+    <a href="/especialidad/{{ esp.nombre | lower | replace('á','a') | replace('é','e') | replace('ó','o') | replace('ú','u') | replace('í','i') | replace(' ','-') }}"
+       class="card" style="--delay: {{ loop.index0 * 0.08 }}s">
+      <span class="card-icon">{{ esp.icono }}</span>
+      <h3 class="card-title">{{ esp.nombre }}</h3>
+      <p class="card-desc">{{ esp.descripcion }}</p>
+      <span class="card-link">Ver más →</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2>¿Listo para agendar tu cita?</h2>
+    <p>Ingresa tu nombre y empieza el proceso en segundos.</p>
+    <form action="" onsubmit="agendarCita(event)">
+      <input type="text" id="nombreInput" placeholder="Tu nombre completo" required>
+      <button type="submit" class="btn-primary">Agendar</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  function agendarCita(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombreInput').value.trim().replace(/\s+/g, '-');
+    if (nombre) window.location.href = '/cita/' + encodeURIComponent(nombre);
+  }
+</script>
+
+{% endblock %}

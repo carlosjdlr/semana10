@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+{% block title %}Contacto – ClínicaSalud{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">Contacto</span>
+    <h2>Contáctanos</h2>
+    <p>Estamos aquí para atenderte. Comunícate con nosotros por cualquiera de estos medios.</p>
+  </div>
+
+  <div class="contact-container">
+    
+    <!-- Información de Contacto -->
+    <div class="contact-info">
+      <h3 class="contact-subtitle">📍 Información de Contacto</h3>
+      
+      <div class="contact-item">
+        <div class="contact-icon">🏥</div>
+        <div class="contact-details">
+          <strong>Dirección</strong>
+          <p>{{ contacto.direccion }}</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-details">
+          <strong>Teléfono</strong>
+          <p>{{ contacto.telefono }}</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div class="contact-details">
+          <strong>WhatsApp</strong>
+          <p>{{ contacto.whatsapp }}</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-details">
+          <strong>Correo Electrónico</strong>
+          <p>{{ contacto.email }}</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">⏰</div>
+        <div class="contact-details">
+          <strong>Horario de Atención</strong>
+          <p>{{ contacto.horario_atencion }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario de Contacto -->
+    <div class="contact-form-container">
+      <h3 class="contact-subtitle">✉️ Envíanos un Mensaje</h3>
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
+        
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" required placeholder="tu@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+593 98 765 4321">
+        </div>
+
+        <div class="form-group">
+          <label for="asunto">Asunto</label>
+          <select id="asunto" name="asunto" required>
+            <option value="">Selecciona un asunto</option>
+            <option value="cita">Agendar Cita</option>
+            <option value="info">Información General</option>
+            <option value="urgencia">Urgencia Médica</option>
+            <option value="reclamo">Reclamo o Sugerencia</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+      </form>
+
+      <div id="form-message" class="form-message" style="display: none;"></div>
+    </div>
+
+  </div>
+
+  <!-- Mapa o Información Adicional -->
+  <div class="map-section">
+    <h3>🗺️ Ubicación</h3>
+    <div class="map-placeholder">
+      <p>📍 Nos ubicamos en el centro de la ciudad, de fácil acceso en transporte público y con amplio estacionamiento.</p>
+      <p><strong>Referencia:</strong> Frente al parque central, a dos cuadras del mercado municipal.</p>
+    </div>
+  </div>
+
+</section>
+
+<script>
+function handleContactSubmit(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
+  
+  // Simular envío (en producción, esto iría a un backend)
+  const messageDiv = document.getElementById('form-message');
+  messageDiv.style.display = 'block';
+  messageDiv.className = 'form-message success';
+  messageDiv.innerHTML = `
+    <strong>✓ Mensaje enviado exitosamente</strong><br>
+    Gracias ${data.nombre}, hemos recibido tu mensaje. Te contactaremos pronto.
+  `;
+  
+  event.target.reset();
+  
+  // Ocultar mensaje después de 5 segundos
+  setTimeout(() => {
+    messageDiv.style.display = 'none';
+  }, 5000);
+}
+</script>
+
+<style>
+/* Estilos para página de contacto */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-subtitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+}
+
+/* Info de contacto */
+.contact-info {
+  background: var(--white);
+  border: 1px solid var(--teal-mid);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.contact-item:hover {
+  transform: translateX(4px);
+  background: var(--teal-light);
+}
+
+.contact-icon {
+  width: 45px;
+  height: 45px;
+  background: var(--teal-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  border: 2px solid var(--teal-mid);
+}
+
+.contact-details {
+  flex: 1;
+}
+
+.contact-details strong {
+  display: block;
+  color: var(--teal-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.contact-details p {
+  color: var(--mid);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Formulario */
+.contact-form-container {
+  background: var(--white);
+  border: 1px solid var(--teal-mid);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--teal-mid);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-light);
+}
+
+.form-message {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-top: 1rem;
+  font-size: 0.92rem;
+}
+
+.form-message.success {
+  background: #e6f4f1;
+  border: 1px solid var(--teal);
+  color: var(--teal-dark);
+}
+
+.form-message.error {
+  background: #fbe9e9;
+  border: 1px solid #e74c3c;
+  color: #c0392b;
+}
+
+/* Mapa */
+.map-section {
+  background: var(--white);
+  border: 1px solid var(--teal-mid);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.map-section h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--dark);
+  margin-bottom: 1.25rem;
+}
+
+.map-placeholder {
+  background: var(--cream);
+  border: 2px dashed var(--teal-mid);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  text-align: center;
+}
+
+.map-placeholder p {
+  color: var(--mid);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.map-placeholder p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}
